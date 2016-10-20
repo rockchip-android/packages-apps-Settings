@@ -7499,4 +7499,13 @@
 
     <!-- Message for telling the user the kind of BT device being displayed in list. -->
     <string name="bluetooth_talkback_bluetooth">Bluetooth</string>
+
+    <!--screenshot setting -->
+    <string name="app_name">ScreenshotManager</string>
+    <string name="screenshot_manager">ScreenshotSetting</string>
+    <string name="screenshot_delay_title">Select delay time to capture the screen </string>
+    <string name="screenshot_show">Show the screenshot button in the statusbar</string>
+    <string name="screenshot_version">Show the version of screenshot manager.</string>
+    <string name="screenshot_storage_title">Set the location of screenshot storage</string>
+    <string name="later">s later capture</string>
 </resources>

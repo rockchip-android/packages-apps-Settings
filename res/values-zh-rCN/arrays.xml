@@ -472,4 +472,15 @@
     <item msgid="4608643045752965568">"粉红色"</item>
     <item msgid="6131821495505931173">"红色"</item>
   </string-array>
+  
+  <string-array name="screenshot_storage_location">
+    <item>内部存储器</item>
+    <item>SD卡存储器</item>
+    <item>USB存储器</item>
+  </string-array>
+  <string-array name="screenshot_strorage_location_values">
+    <item>flash</item>
+    <item>sdcard</item>
+    <item>usb</item>
+  </string-array>
 </resources>

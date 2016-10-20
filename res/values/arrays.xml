@@ -1031,4 +1031,36 @@
         <item>Red</item>
     </string-array>
 
+    <!-- screenshot setting-->
+    <string-array name="screenshot_delay_values">
+    <item>15</item>
+    <item>30</item>
+    <item>60</item>
+    <item>120</item>
+    <item>180</item>
+    <item>240</item>
+    <item>300</item>
+
+    </string-array>
+    <string-array name="screenshot_delay_entries">
+    <item>15 seconds later</item>
+    <item>30 seconds later</item>
+    <item>1 minute later</item>
+    <item>2 minute later</item>
+    <item>3 minute later</item>
+    <item>4 minute later</item>
+    <item>5 minute later</item>
+
+    </string-array>
+
+    <string-array name="screenshot_storage_location">
+    <item>Internal Storage</item>
+    <item>SD Card</item>
+    <item>USB Storage</item>
+    </string-array>
+    <string-array name="screenshot_strorage_location_values">
+    <item>flash</item>
+    <item>sdcard</item>
+    <item>usb</item>
+    </string-array>
 </resources>

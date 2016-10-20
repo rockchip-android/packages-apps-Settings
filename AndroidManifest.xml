@@ -92,7 +92,8 @@
             android:allowBackup="false"
             android:usesCleartextTraffic="true"
             android:defaultToDeviceProtectedStorage="true"
-            android:directBootAware="true">
+            android:directBootAware="true"
+            android:name=".SettingsApplication">
 
         <!-- Settings -->
 
@@ -2915,6 +2916,28 @@
             </intent-filter>
             <meta-data android:name="com.android.settings.PRIMARY_PROFILE_CONTROLLED"
                 android:value="true" />
+        </activity>
+        <!-- SCREENSHOT -->
+        <activity
+            android:name="Settings$ScreenshotSettingsActivity"
+            android:label="@string/screenshot_manager"
+            android:icon="@drawable/capture"
+            android:taskAffinity="" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.VOICE_LAUNCH" />
+                <category android:name="com.android.settings.SHORTCUT" />
+            </intent-filter>
+
+            <intent-filter android:priority="6">
+                <action android:name="com.android.settings.action.SETTINGS" />
+            </intent-filter>
+            <meta-data android:name="com.android.settings.category"
+                android:value="com.android.settings.category.device" />
+            <meta-data android:name="com.android.settings.FRAGMENT_CLASS"
+                android:value="com.android.settings.ScreenshotSetting" />
         </activity>
 
         <service

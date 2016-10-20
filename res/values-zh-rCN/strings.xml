@@ -3099,4 +3099,13 @@
     <string name="bluetooth_talkback_headphone" msgid="26580326066627664">"耳机"</string>
     <string name="bluetooth_talkback_input_peripheral" msgid="5165842622743212268">"外围输入设备"</string>
     <string name="bluetooth_talkback_bluetooth" msgid="5615463912185280812">"蓝牙"</string>
+    
+    <!--screen shot-->
+    <string name="app_name">截屏管理器</string>
+    <string name="screenshot_manager">截屏设置</string>
+    <string name="screenshot_delay_title">延时截屏设置 </string>
+    <string name="screenshot_show">在状态栏上显示截屏按钮</string>
+    <string name="screenshot_version">截屏管理器版本</string>
+    <string name="screenshot_storage_title">设置截屏图片存储位置</string>
+    <string name="later">秒以后截屏</string>
 </resources>

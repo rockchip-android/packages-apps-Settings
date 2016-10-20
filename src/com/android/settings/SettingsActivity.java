@@ -33,6 +33,7 @@ import android.content.res.Configuration;
 import android.nfc.NfcAdapter;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.SystemProperties;
 import android.os.UserHandle;
 import android.os.UserManager;
 import android.support.v14.preference.PreferenceFragment;
@@ -239,6 +240,7 @@ public class SettingsActivity extends SettingsDrawerActivity
             Settings.StorageSettingsActivity.class.getName(),
             Settings.ManageApplicationsActivity.class.getName(),
             Settings.PowerUsageSummaryActivity.class.getName(),
+            Settings.ScreenshotSettingsActivity.class.getName(),
             //personal_section
             Settings.LocationSettingsActivity.class.getName(),
             Settings.SecuritySettingsActivity.class.getName(),
@@ -345,6 +347,7 @@ public class SettingsActivity extends SettingsDrawerActivity
             TestingSettings.class.getName(),
             WifiAPITest.class.getName(),
             WifiInfo.class.getName(),
+            ScreenshotSetting.class.getName(),
     };
 
 
@@ -1085,7 +1088,11 @@ public class SettingsActivity extends SettingsDrawerActivity
         setTileEnabled(new ComponentName(packageName,
                         Settings.DevelopmentSettingsActivity.class.getName()),
                 showDev, isAdmin, pm);
-
+       if(!SystemProperties.get("ro.build.characteristics","null").equals("tablet")) {
+           setTileEnabled(new ComponentName(packageName,
+                           Settings.ScreenshotSettingsActivity.class.getName()),
+                   false, isAdmin, pm);
+       }
         // Reveal development-only quick settings tiles
         DevelopmentTiles.setTilesEnabled(this, showDev);
 

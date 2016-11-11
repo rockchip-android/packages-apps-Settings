@@ -30,6 +30,7 @@
     <item msgid="8392017019801393511">"全部"</item>
   </string-array>
   <string-array name="screen_timeout_entries">
+    <item>"永不休眠"</item>
     <item msgid="3342301044271143016">"15秒"</item>
     <item msgid="8881760709354815449">"30秒"</item>
     <item msgid="7589406073232279088">"1分钟"</item>

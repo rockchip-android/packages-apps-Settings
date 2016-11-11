@@ -3217,4 +3217,6 @@
     <string name="screenshot_version">截屏管理器版本</string>
     <string name="screenshot_storage_title">设置截屏图片存储位置</string>
     <string name="later">秒以后截屏</string>
+
+    <string name="screen_never_timeout_summary" msgid="327761329263064328">"永不休眠"</string>
 </resources>

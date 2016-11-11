@@ -7787,4 +7787,6 @@
     <string name="screenshot_version">Show the version of screenshot manager.</string>
     <string name="screenshot_storage_title">Set the location of screenshot storage</string>
     <string name="later">s later capture</string>
+
+    <string name="screen_never_timeout_summary">Never sleep</string>
 </resources>

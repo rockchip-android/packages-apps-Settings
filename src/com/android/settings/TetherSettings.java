@@ -524,6 +524,10 @@ public class TetherSettings extends RestrictedSettingsFragment
         if (choice == TETHERING_BLUETOOTH) {
             // Turn on Bluetooth first.
             BluetoothAdapter adapter = BluetoothAdapter.getDefaultAdapter();
+            if( adapter == null){
+                return;
+            }
+            
             if (adapter.getState() == BluetoothAdapter.STATE_OFF) {
                 mBluetoothEnableForTether = true;
                 adapter.enable();

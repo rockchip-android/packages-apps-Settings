@@ -117,6 +117,7 @@ public class TetherSettings extends RestrictedSettingsFragment
     private DataSaverBackend mDataSaverBackend;
     private boolean mDataSaverEnabled;
     private Preference mDataSaverFooter;
+    private int mDelayTimeBeforRestartWifiAp = 1000; // ms
 
     @Override
     protected int getMetricsCategory() {
@@ -271,6 +272,11 @@ public class TetherSettings extends RestrictedSettingsFragment
                         && mRestartWifiApAfterConfigChange) {
                     mRestartWifiApAfterConfigChange = false;
                     Log.d(TAG, "Restarting WifiAp due to prior config change.");
+                    try {
+                         Log.d(TAG, "Sleep " + mDelayTimeBeforRestartWifiAp + "ms befor restarting WifiAp.");
+                        Thread.sleep(mDelayTimeBeforRestartWifiAp);
+                    } catch (InterruptedException ignore) {
+                    }
                     startTethering(TETHERING_WIFI);
                 }
             } else if (action.equals(WifiManager.WIFI_AP_STATE_CHANGED_ACTION)) {
@@ -279,6 +285,11 @@ public class TetherSettings extends RestrictedSettingsFragment
                         && mRestartWifiApAfterConfigChange) {
                     mRestartWifiApAfterConfigChange = false;
                     Log.d(TAG, "Restarting WifiAp due to prior config change.");
+                    try {
+                         Log.d(TAG, "Sleep " + mDelayTimeBeforRestartWifiAp + "ms befor restarting WifiAp.");
+                        Thread.sleep(mDelayTimeBeforRestartWifiAp);
+                    } catch (InterruptedException ignore) {
+                    }
                     startTethering(TETHERING_WIFI);
                 }
             } else if (action.equals(Intent.ACTION_MEDIA_SHARED)) {

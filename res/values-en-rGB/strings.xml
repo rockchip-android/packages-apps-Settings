@@ -1229,6 +1229,7 @@
     <string name="reset_network_confirm_title" msgid="1759888886976962773">"Reset?"</string>
     <string name="network_reset_not_available" msgid="7188610385577164676">"Network reset is not available for this user"</string>
     <string name="reset_network_complete_toast" msgid="787829973559541880">"Network settings have been reset"</string>
+    <string name="ethernet_settings_title">"Ehernet"</string>
     <string name="device_reset_title" msgid="2384019005638768076">"Reset device"</string>
     <string name="master_clear_title" msgid="5907939616087039756">"Factory data reset"</string>
     <string name="master_clear_desc" product="tablet" msgid="9146059417023157222">"This will erase all data from your tablet\'s "<b>"internal storage"</b>", including:\n\n"<li>"Your Google account"</li>\n<li>"System and app data and settings"</li>\n<li>"Downloaded apps"</li></string>

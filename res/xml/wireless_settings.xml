@@ -97,5 +97,12 @@
         settings:userRestriction="no_network_reset"
         settings:useAdminDisabledSummary="true"
         android:fragment="com.android.settings.ResetNetwork" />
+    
+    <com.android.settingslib.RestrictedPreference
+        android:key="ethernet_settings"
+        android:title="@string/ethernet_settings_title"
+        settings:userRestriction="no_ethernet_settings"
+        settings:useAdminDisabledSummary="true"
+        android:fragment="com.android.settings.EthernetSettings" />
 
 </PreferenceScreen>

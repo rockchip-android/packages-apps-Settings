@@ -2868,6 +2868,50 @@
     <!-- Reset settings complete toast text [CHAR LIMIT=75] -->
     <string name="reset_network_complete_toast">Network settings have been reset</string>
 
+    <!-- Ethernet Settings -->
+    <string name="ethernet_settings_title">Ethernet</string>
+     <string name="ethernet_netmask_hint" translatable="false"> 255.255.255.0</string>
+     <string name="ethernet_info_getting">"getting IP info..."</string>
+     <string name="ethernet_settings">Ethernet</string>
+     <string name="ethernet_connect">Connect</string>
+     <string name="ethernet_cancel">Cancel</string>
+    <!--Wireless controls screen, settings summary for the item tot ake you to the ethernet settings screen -->
+     <string name="ethernet_settings_summary">Manager ethernet</string>
+    <!-- ethernet hw address  -->
+     <string name="ethernet_hw_addr">MAC</string>
+     <!-- ethernet ip address  -->
+     <string name="ethernet_ip_addr">IP address</string>
+     <!-- ethernet netmask  -->
+     <string name="ethernet_netmask">netmask</string>
+     <!-- ethernet gateway  -->
+     <string name="ethernet_gateway">gateway</string>
+     <!-- ethernet dns1  -->
+     <string name="ethernet_dns1">dns1</string>
+     <!-- ethernet dns2 -->
+     <string name="ethernet_dns2">dns2</string>
+     <string name="category_ethernet">Static IP Setttings</string>
+     <string name="usedhcp">dhcp</string>
+     <string name="usestatic">static</string>
+     <string name="ethernet_use_static_ip">Use static IP</string>
+     <string name="ethernet_ip_address">IP address</string>
+     <string name="staticip_save">Save</string>
+     <string name="staticip_cancel">Cancel</string>
+     <string name="str_ok">OK</string>
+     <string name="str_cancel">Cancel</string>
+     <string name="str_about">Important</string>
+     <string name="str_mesg">Whether save Settings?</string>
+     <string name="save_failed">Save failed!</string>
+     <string name="ethernet_ip_settings_invalid_ip">Please type a valid IP address.</string>
+     <string name="eth_ip_settings_please_complete_settings">Please give complete static IP settings!</string>
+     <string name="ethernet_quick_toggle_title">Ethernet</string>
+     <!-- Ethernet settings check box summary for turning on ethernet -->
+     <string name="ethernet_quick_toggle_summary_off">Ethernet is disabled</string>
+     <!--Used as title on second screen after selecting Ethernet settings -->
+     <string name="ethernet_quick_toggle_summary_on">Ethernet is enabled</string>
+     <!--Used as title on second screen after selecting Ethernet settings -->
+     <string name="ethernet_mode_title">Ethernet Ip mode</string>
+     <string name="ethernet_info_getting">"getting IP info..."</string>    
+
     <!-- Master Clear -->
     <!-- SD card & phone storage settings screen, setting option name under Internal phone storage heading [CHAR LIMIT=30] -->
     <string name="device_reset_title">Reset device</string>

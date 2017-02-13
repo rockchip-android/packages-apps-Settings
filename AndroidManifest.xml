@@ -120,7 +120,6 @@
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
             <meta-data android:name="android.app.shortcuts" android:resource="@xml/shortcuts"/>
         </activity-alias>
@@ -2424,7 +2423,6 @@
                   android:process=":CryptKeeper">
             <intent-filter android:priority="10">
                 <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.HOME" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
@@ -2436,7 +2434,6 @@
                   android:theme="@style/FallbackHome">
             <intent-filter android:priority="-1000">
                 <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.HOME" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>

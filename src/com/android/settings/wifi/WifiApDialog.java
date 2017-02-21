@@ -35,6 +35,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import java.io.*;
 
 import com.android.settings.R;
 
@@ -116,6 +117,36 @@ public class WifiApDialog extends AlertDialog implements View.OnClickListener,
         return null;
     }
 
+    public boolean checkIfSupportDualBand() {
+        File file = new File("/data/wifi_chip");
+        BufferedReader reader = null;
+
+        try {
+            reader = new BufferedReader(new FileReader(file));
+            String tempString = null;
+            while ((tempString = reader.readLine()) != null) {
+                Log.d(TAG, "Get wifi chip name: " + tempString);
+                if (tempString.contains("AP6234") || tempString.contains("AP6330")
+                    || tempString.contains("AP6335") || tempString.contains("AP6354")
+                    || tempString.contains("AP6441") || tempString.contains("AP6356S")
+		    || tempString.contains("RTL8822BS") || tempString.contains("RTL8822BU")) {
+                    reader.close();
+                    return true;
+                }
+            }
+            reader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (reader != null) {
+                try {
+                    reader.close();
+                } catch (IOException e1) {}
+            }
+        }
+
+        return false;
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         boolean mInit = true;
@@ -135,10 +166,10 @@ public class WifiApDialog extends AlertDialog implements View.OnClickListener,
 
         ArrayAdapter <CharSequence> channelAdapter;
         String countryCode = mWifiManager.getCountryCode();
-        if (!mWifiManager.isDualBandSupported() || countryCode == null) {
+        if (!checkIfSupportDualBand()) {
             //If no country code, 5GHz AP is forbidden
-            Log.i(TAG,(!mWifiManager.isDualBandSupported() ? "Device do not support 5GHz " :"") 
-                    + (countryCode == null ? " NO country code" :"") +  " forbid 5GHz");
+           // Log.i(TAG,(!mWifiManager.isDualBandSupported() ? "Device do not support 5GHz " :"") 
+           //         + (countryCode == null ? " NO country code" :"") +  " forbid 5GHz");
             channelAdapter = ArrayAdapter.createFromResource(mContext,
                     R.array.wifi_ap_band_config_2G_only, android.R.layout.simple_spinner_item);
             mWifiConfig.apBand = 0;

@@ -1084,10 +1084,12 @@
     <string-array name="ethernet_mode_location">
         <item>@string/usestatic</item>
         <item>@string/usedhcp</item>
+        <item>@string/usepppoe</item>
     </string-array>
     <string-array name="ethernet_mode_values">
         <item>StaticIP</item>
         <item>DHCP</item>
+        <item>PPPoE</item>
     </string-array>
     
 </resources>

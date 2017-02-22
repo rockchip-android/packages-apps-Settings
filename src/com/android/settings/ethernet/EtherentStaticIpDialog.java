@@ -161,38 +161,7 @@ class ethernet_static_ip_dialog extends AlertDialog implements TextWatcher {
 		String dns1 = mdns1.getText().toString();
 		String dns2 = mdns2.getText().toString();
 		int network_prefix_length = 24;// Integer.parseInt(ipnetmask.getText().toString());
-	/*	if (!TextUtils.isEmpty(ipAddr)) { // not empty
-			System.putString(contentResolver, System.ETHERNET_STATIC_IP, ipAddr);
-		} else {
-			System.putString(contentResolver, System.ETHERNET_STATIC_IP, null);
-		}
-		if (!TextUtils.isEmpty(gateway)) { // not empty
-			System.putString(contentResolver, System.ETHERNET_STATIC_GATEWAY,
-					gateway);
-		} else {
-			System.putString(contentResolver, System.ETHERNET_STATIC_GATEWAY,
-					null);
-		}
-		if (!TextUtils.isEmpty(netMask)) { // not empty
-			System.putString(contentResolver, System.ETHERNET_STATIC_NETMASK,
-					netMask);
-		} else {
-			System.putString(contentResolver, System.ETHERNET_STATIC_NETMASK,
-					null);
-		}
-		if (!TextUtils.isEmpty(dns1)) { // not empty
-			System.putString(contentResolver, System.ETHERNET_STATIC_DNS1, dns1);
-		} else {
-			System.putString(contentResolver, System.ETHERNET_STATIC_DNS1, null);
-		}
-		if (!TextUtils.isEmpty(dns2)) { // not empty
-			System.putString(contentResolver, System.ETHERNET_STATIC_DNS2, dns2);
-		} else {
-			System.putString(contentResolver, System.ETHERNET_STATIC_DNS2, null);
-		}*/
-		/*
-		 * 回调传给EthernetSetting
-		 */
+
 		mGetStaticInfo.getStaticIp(ipAddr);
 		mGetStaticInfo.getStaticNetMask(netMask);
 		mGetStaticInfo.getStaticGateway(gateway);

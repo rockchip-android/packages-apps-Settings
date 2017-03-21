@@ -47,6 +47,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.Toolbar;
 
 import com.android.internal.logging.MetricsProto.MetricsEvent;
 import com.android.internal.net.LegacyVpnInfo;
@@ -65,9 +66,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-
 import static android.app.AppOpsManager.OP_ACTIVATE_VPN;
-
+import android.os.SystemProperties;
 /**
  * Settings screen listing VPNs. Configured VPNs and networks managed by apps
  * are shown in the same list.
@@ -99,6 +99,8 @@ public class VpnSettings extends RestrictedSettingsFragment implements
     private LegacyVpnInfo mConnectedLegacyVpn;
 
     private boolean mUnavailable;
+    /**product type*/
+    private String mProduct;
 
     public VpnSettings() {
         super(UserManager.DISALLOW_CONFIG_VPN);
@@ -107,6 +109,12 @@ public class VpnSettings extends RestrictedSettingsFragment implements
     @Override
     protected int getMetricsCategory() {
         return MetricsEvent.VPN;
+    }
+
+    @Override
+    public void onCreate(Bundle icicle) {
+        super.onCreate(icicle);
+        mProduct = SystemProperties.get("ro.target.product");
     }
 
     @Override
@@ -120,6 +128,7 @@ public class VpnSettings extends RestrictedSettingsFragment implements
         setHasOptionsMenu(!mUnavailable);
 
         addPreferencesFromResource(R.xml.vpn_settings2);
+        initView();
     }
 
     @Override
@@ -147,13 +156,7 @@ public class VpnSettings extends RestrictedSettingsFragment implements
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.vpn_create: {
-                // Generate a new key. Here we just use the current time.
-                long millis = System.currentTimeMillis();
-                while (mLegacyVpnPreferences.containsKey(Long.toHexString(millis))) {
-                    ++millis;
-                }
-                VpnProfile profile = new VpnProfile(Long.toHexString(millis));
-                ConfigDialogFragment.show(this, profile, true /* editing */, false /* exists */);
+                createVPN();
                 return true;
             }
         }
@@ -172,7 +175,8 @@ public class VpnSettings extends RestrictedSettingsFragment implements
             getPreferenceScreen().removeAll();
             return;
         } else {
-            getEmptyTextView().setText(R.string.vpn_no_vpns_added);
+            if(!"box".equals(mProduct))
+                getEmptyTextView().setText(R.string.vpn_no_vpns_added);
         }
 
         // Start monitoring
@@ -227,7 +231,6 @@ public class VpnSettings extends RestrictedSettingsFragment implements
 
                 // Find new VPNs by subtracting existing ones from the full set
                 final Set<Preference> updates = new ArraySet<>();
-
                 for (VpnProfile profile : vpnProfiles) {
                     LegacyVpnPreference p = findOrCreatePreference(profile);
                     if (connectedLegacyVpns.containsKey(profile.key)) {
@@ -255,10 +258,10 @@ public class VpnSettings extends RestrictedSettingsFragment implements
 
                 final PreferenceGroup vpnGroup = getPreferenceScreen();
                 for (int i = vpnGroup.getPreferenceCount() - 1; i >= 0; i--) {
-                    Preference p = vpnGroup.getPreference(i);
+                   Preference p = vpnGroup.getPreference(i);
                     if (updates.contains(p)) {
                         updates.remove(p);
-                    } else {
+                    } else if(!"vpn_create".equals(p.getKey())){
                         vpnGroup.removePreference(p);
                     }
                 }
@@ -314,6 +317,8 @@ public class VpnSettings extends RestrictedSettingsFragment implements
             PackageInfo pkgInfo = pref.getPackageInfo();
             AppDialogFragment.show(this, pkgInfo, pref.getLabel(), false /* editing */, connected);
             return true;
+        }else{
+            createVPN();
         }
         return false;
     }
@@ -474,4 +479,27 @@ public class VpnSettings extends RestrictedSettingsFragment implements
         }
         return result;
     }
+
+    private void createVPN(){
+        // Generate a new key. Here we just use the current time.
+        long millis = System.currentTimeMillis();
+        while (mLegacyVpnPreferences.containsKey(Long.toHexString(millis))) {
+            ++millis;
+        }
+        VpnProfile profile = new VpnProfile(Long.toHexString(millis));
+        ConfigDialogFragment.show(this, profile, true /* editing */, false /* exists */);
+    }
+
+    private void initView(){
+        PreferenceGroup vpnGroup = getPreferenceScreen();
+        Preference createVpnPreference = vpnGroup.findPreference("vpn_create");
+        if(!"box".equals(mProduct))
+            vpnGroup.removePreference(createVpnPreference);
+        else{
+            createVpnPreference.setOnPreferenceClickListener(this);
+            Toolbar toolbar = (Toolbar)getActivity().findViewById(R.id.action_bar);
+            toolbar.requestFocus();
+        }
+    }
+
 }

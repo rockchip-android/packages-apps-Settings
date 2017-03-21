@@ -32,7 +32,7 @@ import android.security.Credentials;
 import android.security.KeyStore;
 import android.util.Log;
 import android.widget.Toast;
-
+import android.os.SystemProperties;
 import com.android.internal.net.LegacyVpnInfo;
 import com.android.internal.net.VpnConfig;
 import com.android.internal.net.VpnProfile;
@@ -54,6 +54,8 @@ public class ConfigDialogFragment extends DialogFragment implements
             ServiceManager.getService(Context.CONNECTIVITY_SERVICE));
 
     private boolean mUnlocking = false;
+	/** product type */
+	private String mProduct;
 
     public static void show(VpnSettings parent, VpnProfile profile, boolean edit, boolean exists) {
         if (!parent.isAdded()) return;
@@ -74,20 +76,22 @@ public class ConfigDialogFragment extends DialogFragment implements
         super.onResume();
 
         // Check KeyStore here, so others do not need to deal with it.
-        if (!KeyStore.getInstance().isUnlocked()) {
-            if (!mUnlocking) {
-                // Let us unlock KeyStore. See you later!
-                Credentials.getInstance().unlock(getActivity());
-            } else {
-                // We already tried, but it is still not working!
-                dismiss();
-            }
-            mUnlocking = !mUnlocking;
-            return;
-        }
+		if (!"box".equals(mProduct)) {
+			if (!KeyStore.getInstance().isUnlocked()) {
+				if (!mUnlocking) {
+					// Let us unlock KeyStore. See you later!
+					Credentials.getInstance().unlock(getActivity());
+				} else {
+					// We already tried, but it is still not working!
+					dismiss();
+				}
+				mUnlocking = !mUnlocking;
+				return;
+			}
 
-        // Now KeyStore is always unlocked. Reset the flag.
-        mUnlocking = false;
+			// Now KeyStore is always unlocked. Reset the flag.
+			mUnlocking = false;
+		}
     }
 
     @Override
@@ -96,7 +100,7 @@ public class ConfigDialogFragment extends DialogFragment implements
         VpnProfile profile = (VpnProfile) args.getParcelable(ARG_PROFILE);
         boolean editing = args.getBoolean(ARG_EDITING);
         boolean exists = args.getBoolean(ARG_EXISTS);
-
+        mProduct = SystemProperties.get("ro.target.product");
         return new ConfigDialog(getActivity(), this, profile, editing, exists);
     }
 

@@ -102,6 +102,10 @@ public class SuggestionsChecks {
     private boolean hasWallpaperSet() {
         IBinder b = ServiceManager.getService(Context.WALLPAPER_SERVICE);
         IWallpaperManager service = Stub.asInterface(b);
+        if(service == null){
+            //Log.e(TAG, "WALLPAPER_SERVICES is null.");
+            return false;
+        }
         try {
             return !service.isSetWallpaperAllowed(mContext.getOpPackageName()) ||
                     service.getWallpaper(mCallback, WallpaperManager.FLAG_SYSTEM,

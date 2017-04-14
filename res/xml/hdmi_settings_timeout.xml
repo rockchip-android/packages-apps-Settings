@@ -40,7 +40,6 @@
            android:key="hdmi_lcd_timeout" 
            android:title="@string/hdmi_lcd_timeout"
            android:entries="@array/hdmi_lcd_timeout_entries"
-           android:entryValues="@array/hdmi_lcd_timeout_values"
-       />    
+           android:entryValues="@array/hdmi_lcd_timeout_values"/>    
 
 </PreferenceScreen>

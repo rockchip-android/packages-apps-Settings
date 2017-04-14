@@ -56,11 +56,7 @@ public class DrmDisplaySetting {
 
     public static List<String> getDisplayModes(DisplayInfo di) {
         List<String> res = null;
-        if (di.getDisplayId() == DISPLAY_TYPE_HDMI) {
-            res = getHdmiModes();
-        } else if (di.getDisplayId() == DISPLAY_TYPE_DP){
-            res = getDpModes();
-        }
+        res = getHdmiModes();
         return res;
     }
 
@@ -83,17 +79,18 @@ public class DrmDisplaySetting {
         return getDpMode();
     }
 
-    public static void setDisplayModeTemp(DisplayInfo di, int index) {
-        String mode = getDisplayModes(di).get(index);
-        setDisplayModeTemp(di, mode);
+    public static boolean setDisplayModeTemp(DisplayInfo di, int index) {
+        List<String> modes = getDisplayModes(di);
+        if(modes != null && modes.size() > 0 && index >= 0 && index < modes.size()){
+            String mode = modes.get(index);
+            setDisplayModeTemp(di, mode);
+            return true;
+        }
+        return false;
     }
 
     public static void setDisplayModeTemp(DisplayInfo di, String mode) {
-        if (di.getDisplayId() == DISPLAY_TYPE_HDMI) {
-            setHdmiModeTemp(mode);
-        } else if(di.getDisplayId() == DISPLAY_TYPE_DP) {
-            setDpModeTemp(mode);
-        }
+        setHdmiModeTemp(mode);
     }
 
     public static void confirmSaveDisplayMode(DisplayInfo di, boolean isSave) {
@@ -122,7 +119,7 @@ public class DrmDisplaySetting {
     private final static String SYS_NODE_HDMI_STATUS =
             "/sys/devices/platform/display-subsystem/drm/card0/card0-HDMI-A-1/status";
 
-    private final static String PROP_RESOLUTION_HDMI = "persist.sys.resolution.main";
+    private final static String PROP_RESOLUTION_HDMI = "persist.sys.resolution.aux";
 
     private static String tmpSetHdmiMode = null;
     private static String curSetHdmiMode = "1920x1080p60";

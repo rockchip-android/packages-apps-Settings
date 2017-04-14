@@ -323,24 +323,10 @@ public class ScreenScaleActivity extends Activity
            Log.d("ScreenSettingActivity",msg);
    }
    private void rightClick(boolean isClick){
-        if(!mPlatform.contains("3288") && mDisplayOutputManager != null){
-            int scalevalue = mDisplayOutputManager.getOverScan(mDisplayOutputManager.MAIN_DISPLAY).right + 1;
-            if (scalevalue > MAX_SCALE){
-                scalevalue = MAX_SCALE;
-            }
-            if(scalevalue >=0 ){
-                if(mDisplayInfo.getDisplayId() == 0){
-                    mDisplayOutputManager.setOverScan(mDisplayOutputManager.MAIN_DISPLAY, mDisplayOutputManager.DISPLAY_OVERSCAN_X, scalevalue);
-                }else{
-                    mDisplayOutputManager.setOverScan(mDisplayOutputManager.AUX_DISPLAY, mDisplayOutputManager.DISPLAY_OVERSCAN_X, scalevalue);
-                }
-            }
-        }else if(mPlatform.contains("3288")){
-            mLeftScale += 1;
-            if(mLeftScale > MAX_SCALE)
-                mLeftScale = MAX_SCALE;
-            setOverScanProperty();
-        }
+        mLeftScale += 1;
+        if(mLeftScale > MAX_SCALE)
+            mLeftScale = MAX_SCALE;
+        setOverScanProperty();
         if(!isClick){
             mRightButton.setImageResource(R.drawable.button_right_pressed);
             mHandler.removeMessages(RightButtonResume);
@@ -348,24 +334,10 @@ public class ScreenScaleActivity extends Activity
         }
    }
    private void leftClick(boolean isClick){
-        if(!mPlatform.contains("3288") && mDisplayOutputManager != null){
-            int scalevalue = mDisplayOutputManager.getOverScan(mDisplayOutputManager.MAIN_DISPLAY).left - 1;
-            if (scalevalue < MIN_SCALE){
-                scalevalue = MIN_SCALE;
-            }
-            if(scalevalue >=0){
-                if(mDisplayInfo.getDisplayId() == 0){
-                    mDisplayOutputManager.setOverScan(mDisplayOutputManager.MAIN_DISPLAY, mDisplayOutputManager.DISPLAY_OVERSCAN_X, scalevalue);
-                }else{
-                    mDisplayOutputManager.setOverScan(mDisplayOutputManager.AUX_DISPLAY, mDisplayOutputManager.DISPLAY_OVERSCAN_X, scalevalue);
-                }
-            }
-        }else if(mPlatform.contains("3288")){
-            mLeftScale -= 1;
-            if(mLeftScale < MIN_SCALE)
-                mLeftScale = MIN_SCALE;
-            setOverScanProperty();
-        }
+        mLeftScale -= 1;
+        if(mLeftScale < MIN_SCALE)
+            mLeftScale = MIN_SCALE;
+        setOverScanProperty();
         if(!isClick){
             mLeftButton.setImageResource(R.drawable.button_left_pressed);
             mHandler.removeMessages(LeftButtonResume);
@@ -374,24 +346,10 @@ public class ScreenScaleActivity extends Activity
    }
    private void upClick(boolean isClick){
         // add code here
-        if(!mPlatform.contains("3288") && mDisplayOutputManager != null ){
-            int scalevalue = mDisplayOutputManager.getOverScan(mDisplayOutputManager.MAIN_DISPLAY).top - 1;
-            if (scalevalue < MIN_SCALE){
-                scalevalue = MIN_SCALE;
-            }
-            if(scalevalue >=0){
-                if(mDisplayInfo.getDisplayId() == 0){
-                    mDisplayOutputManager.setOverScan(mDisplayOutputManager.MAIN_DISPLAY, mDisplayOutputManager.DISPLAY_OVERSCAN_Y, scalevalue);
-                }else{
-                    mDisplayOutputManager.setOverScan(mDisplayOutputManager.AUX_DISPLAY, mDisplayOutputManager.DISPLAY_OVERSCAN_Y, scalevalue);
-                }
-            }
-        }else if(mPlatform.contains("3288")){
-            mBottomScale -= 1;
+        mBottomScale -= 1;
             if(mBottomScale < MIN_SCALE)
-                mBottomScale = MIN_SCALE;
-            setOverScanProperty();
-        }
+        mBottomScale = MIN_SCALE;
+        setOverScanProperty();
         if(!isClick){
             mUpButton.setImageResource(R.drawable.button_vertical_up_pressed);
             mHandler.removeMessages(UpButtonResume);
@@ -399,24 +357,10 @@ public class ScreenScaleActivity extends Activity
         }
    }
    private void downClick(boolean isClick){
-        if(!mPlatform.contains("3288") && mDisplayOutputManager != null){
-            int scalevalue = mDisplayOutputManager.getOverScan(mDisplayOutputManager.MAIN_DISPLAY).bottom + 1;
-            if (scalevalue > MAX_SCALE){
-                scalevalue = MAX_SCALE;
-            }
-            if(scalevalue >=0 ){
-                if(mDisplayInfo.getDisplayId() == 0){
-                    mDisplayOutputManager.setOverScan(mDisplayOutputManager.MAIN_DISPLAY, mDisplayOutputManager.DISPLAY_OVERSCAN_Y, scalevalue);
-                }else{
-                    mDisplayOutputManager.setOverScan(mDisplayOutputManager.AUX_DISPLAY, mDisplayOutputManager.DISPLAY_OVERSCAN_Y, scalevalue);
-                }
-            }
-        }else if(mPlatform.contains("3288")){
-            mBottomScale += 1;
+        mBottomScale += 1;
             if(mBottomScale > MAX_SCALE)
-                mBottomScale = MAX_SCALE;
-            setOverScanProperty();
-        }
+        mBottomScale = MAX_SCALE;
+        setOverScanProperty();
         if(!isClick){
             mDownButton.setImageResource(R.drawable.button_vertical_down_pressed);
             mHandler.removeMessages(DownButtonResume);
@@ -427,26 +371,22 @@ public class ScreenScaleActivity extends Activity
     * 初始化数据
     */
    public void initData(){
-      mPlatform = getIntent().getStringExtra(ConstData.IntentKey.PLATFORM);
-      mDisplayInfo = (DisplayInfo)getIntent().getSerializableExtra(ConstData.IntentKey.DISPLAY_INFO);
-      String overScan;
-      if(mPlatform.contains("3288")){
-         if(mDisplayInfo.getDisplayId() == 0){
-             overScan = SystemProperties.get(PROPERTY_OVERSCAN_MAIN);
-         }else{
-             overScan = SystemProperties.get(PROPERTY_OVERSCAN_AUX);
-         }
-         if(TextUtils.isEmpty(overScan))
-                 return;
-         try{
-             mLeftScale = Integer.parseInt(overScan.split(",")[0].split("\\s+")[1]);
-         }catch (Exception e){
-         }
-         try{
-             mBottomScale = Integer.parseInt(overScan.split(",")[3]);
-         }catch (Exception e){
-         }
-      }
+        mPlatform = getIntent().getStringExtra(ConstData.IntentKey.PLATFORM);
+        mDisplayInfo = (DisplayInfo)getIntent().getSerializableExtra(ConstData.IntentKey.DISPLAY_INFO);
+        String overScan;
+        if(mDisplayInfo.getDisplayId() == 0){
+            overScan = SystemProperties.get(PROPERTY_OVERSCAN_MAIN);
+        }else{
+            overScan = SystemProperties.get(PROPERTY_OVERSCAN_AUX);
+        }
+        if(TextUtils.isEmpty(overScan))
+            return;
+        try{
+            mLeftScale = Integer.parseInt(overScan.split(",")[0].split("\\s+")[1]);
+        }catch (Exception e){}
+        try{
+            mBottomScale = Integer.parseInt(overScan.split(",")[3]);
+        }catch (Exception e){}
    }
    /**
     * 属性设置屏幕缩放
@@ -457,9 +397,6 @@ public class ScreenScaleActivity extends Activity
        append(",").append(mBottomScale).
        append(",").append(mLeftScale).
        append(",").append(mBottomScale);
-       if(mDisplayInfo.getDisplayId() == 0)
-           SystemProperties.set(PROPERTY_OVERSCAN_MAIN, builder.toString());
-       else
-           SystemProperties.set(PROPERTY_OVERSCAN_AUX, builder.toString());
+       SystemProperties.set(PROPERTY_OVERSCAN_AUX, builder.toString());
    }
 }

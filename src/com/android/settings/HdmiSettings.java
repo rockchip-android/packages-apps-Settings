@@ -101,7 +101,7 @@ public class HdmiSettings extends SettingsPreferenceFragment
        mHdmiScale = findPreference(KEY_HDMI_SCALE);
        mHdmiScale.setOnPreferenceClickListener(this);
        mHdmiLcd = (ListPreference) findPreference(KEY_HDMI_LCD);
-       initHdmiLCD();
+       init();
        Log.d(TAG,"onCreate---------------------");
    }
 
@@ -115,12 +115,18 @@ public class HdmiSettings extends SettingsPreferenceFragment
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
-       // TODO Auto-generated method stub
-       super.onActivityCreated(savedInstanceState);
-       final SettingsActivity activity = (SettingsActivity) getActivity();
-       mSwitchBar = activity.getSwitchBar();
-       mSwitchBar.show();
-       //mSwitchBar.addOnSwitchChangeListener(this);
+        super.onActivityCreated(savedInstanceState);
+        SettingsActivity activity = (SettingsActivity) getActivity();
+        mSwitchBar = activity.getSwitchBar();
+        mSwitchBar.show();
+        mSwitchBar.addOnSwitchChangeListener(this);
+       //restore hdmi switch value
+        String switchValue = SystemProperties.get("sys.hdmi_status.aux", "on");
+        if(switchValue.equals("on")){
+            mSwitchBar.setChecked(true);
+        }else{
+            mSwitchBar.setChecked(false);
+        }
        //mSwitchBar.setChecked(sharedPreferences.getString("enable", "1").equals("1"));
        //String resolutionValue=sharedPreferences.getString("resolution", "1280x720p-60");
        //Log.d(TAG,"onActivityCreated resolutionValue="+resolutionValue);
@@ -144,10 +150,11 @@ public class HdmiSettings extends SettingsPreferenceFragment
    }
 
    public void onDestroy() {
-       super.onDestroy();
+        mSwitchBar.removeOnSwitchChangeListener(this);
+        super.onDestroy();
    }
 
-    private void initHdmiLCD(){
+    private void init(){
         mHdmiLcd.setOnPreferenceChangeListener(this);
         ContentResolver resolver = context.getContentResolver();
         long lcdTimeout = -1;
@@ -175,7 +182,8 @@ public class HdmiSettings extends SettingsPreferenceFragment
     
     private void updateHDMIState(){
         Display[] allDisplays = mDisplayManager.getDisplays();
-        if(allDisplays == null || allDisplays.length < 2){
+        String switchValue = SystemProperties.get("sys.hdmi_status.aux", "on");
+        if(allDisplays == null || allDisplays.length < 2 || switchValue.equals("off")){
             mHdmiResolution.setEnabled(false);
             mHdmiScale.setEnabled(false);
         }else{
@@ -235,7 +243,16 @@ public class HdmiSettings extends SettingsPreferenceFragment
 
    @Override
    public void onSwitchChanged(Switch switchView, boolean isChecked) {
-       //setHdmiConfig(isChecked);
+        Log.i(TAG, "onSwitchChanged->isChecked:" + isChecked);
+        if(isChecked){
+            //Settings HDMI on
+            SystemProperties.set("sys.hdmi_status.aux", "on");
+            updateHDMIState();
+        }else{
+            //Settings HDMI off
+            SystemProperties.set("sys.hdmi_status.aux", "off");
+            updateHDMIState();
+        }
    }
     private ContentObserver mHdmiTimeoutSettingObserver = new ContentObserver(new Handler()) {
        @Override

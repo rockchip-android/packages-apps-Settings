@@ -110,12 +110,13 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mProduct = SystemProperties.get("ro.target.product");
+        String supportHDMI = SystemProperties.get("ro.rk.hdmi_enable", "false");
         final Activity activity = getActivity();
         final ContentResolver resolver = activity.getContentResolver();
 
         addPreferencesFromResource(R.xml.display_settings);
         mHDMIPreference = findPreference(KEY_HDMI_SETTINGS);
-        if(!"tablet".equals(mProduct)){
+        if(!"tablet".equals(mProduct) || !"true".equals(supportHDMI)){
             getPreferenceScreen().removePreference(mHDMIPreference);
         }
         mScreenSaverPreference = findPreference(KEY_SCREEN_SAVER);

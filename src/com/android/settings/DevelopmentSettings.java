@@ -682,7 +682,7 @@ public class DevelopmentSettings extends RestrictedSettingsFragment
                 Settings.Global.BUGREPORT_IN_POWER_MENU, 0) != 0);
         updateSwitchPreference(mKeepScreenOn, Settings.Global.getInt(cr,
                 Settings.Global.STAY_ON_WHILE_PLUGGED_IN, 0) != 0);
-        updateSwitchPreference(mAbcOn,(SystemProperties.getInt("persist.rk.abc_switch",0)) != 0);
+        updateSwitchPreference(mAbcOn,(SystemProperties.getInt("persist.sys.abc_switch",0)) != 0);
         updateSwitchPreference(mBtHciSnoopLog, Settings.Secure.getInt(cr,
                 Settings.Secure.BLUETOOTH_HCI_LOG, 0) != 0);
         updateSwitchPreference(mDebugViewAttributes, Settings.Global.getInt(cr,
@@ -1964,14 +1964,14 @@ public class DevelopmentSettings extends RestrictedSettingsFragment
                     mKeepScreenOn.isChecked() ?
                             (BatteryManager.BATTERY_PLUGGED_AC | BatteryManager.BATTERY_PLUGGED_USB) : 0);
         }else if (preference == mAbcOn) {
-            if(SystemProperties.getInt("persist.rk.abc_switch",0) == 1){
-                Log.d(TAG, "set persist.rk.abc_switch 0");
+            if(SystemProperties.getInt("persist.sys.abc_switch",0) == 1){
+                Log.d(TAG, "set persist.sys.abc_switch 0");
                 mAbcOn.setChecked(false);
-                SystemProperties.set("persist.rk.abc_switch","0");
+                SystemProperties.set("persist.sys.abc_switch","0");
             }else{
-                Log.d(TAG, "set persist.rk.abc_switch 1");
+                Log.d(TAG, "set persist.sys.abc_switch 1");
                 mAbcOn.setEnabled(true);
-                SystemProperties.set("persist.rk.abc_switch","1");
+                SystemProperties.set("persist.sys.abc_switch","1");
             }
         } else if (preference == mBtHciSnoopLog) {
             writeBtHciSnoopLogOptions();

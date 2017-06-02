@@ -7941,8 +7941,8 @@
     <string name="screen_never_timeout_summary">Never sleep</string>
     <!-- Warning when activating the automatic storage manager on legacy devices. [CHAR LIMIT=NONE] -->
     <string name="automatic_storage_manager_activation_warning">Your storage is now being managed by the storage manager</string>
-    <string name="abc_on" >"open android bug collector"</string>
-    <string name="abc_on_summary" >"Each whole log is saved to the /data/syslog directory, you can use ADB pull export it"</string>
+    <string name="abc_on" >"Android bug collector"</string>
+    <string name="abc_on_summary" >"Log will be saved in /data/logs/syslog"</string>
 
     <!-- Carrier Provisioning Info [CHAR LIMIT=NONE] -->
     <string name="carrier_provisioning">Carrier Provisioning Info</string>

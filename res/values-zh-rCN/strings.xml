@@ -3293,8 +3293,8 @@
     <string name="web_action_section_title" msgid="806405168097593614">"未安装的应用"</string>
     <string name="domain_url_section_title" msgid="7046835219056428883">"已安装的应用"</string>
     <string name="automatic_storage_manager_activation_warning" msgid="6353100011690933254">"您的存储空间目前是由存储空间管理器管理"</string>
-    <string name="abc_on" >"打开日志自动收集器"</string>
-    <string name="abc_on_summary" >"每次开机的完整日志保存到/data/syslog目录，可使用adb pull导出"</string>
+    <string name="abc_on" >"系统日志收集器"</string>
+    <string name="abc_on_summary" >"收集的日志保存在/data/logs/syslog目录下"</string>
     <string name="carrier_provisioning" msgid="4398683675591893169">"运营商配置信息"</string>
     <string name="trigger_carrier_provisioning" msgid="3434865918009286187">"触发运营商配置"</string>
     <string name="confirm_dialog_title">保存确认</string>

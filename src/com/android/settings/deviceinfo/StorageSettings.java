@@ -104,6 +104,8 @@ public class StorageSettings extends SettingsPreferenceFragment implements Index
         return R.string.help_uri_storage;
     }
 
+    private boolean mFinish;
+    
     @Override
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
@@ -130,13 +132,18 @@ public class StorageSettings extends SettingsPreferenceFragment implements Index
     private final StorageEventListener mStorageListener = new StorageEventListener() {
         @Override
         public void onVolumeStateChanged(VolumeInfo vol, int oldState, int newState) {
-            if (isInteresting(vol)) {
-                refresh();
+
+            if (isInteresting(vol) && !mFinish) {
+                    refresh();
             }
+
         }
 
         @Override
         public void onDiskDestroyed(DiskInfo disk) {
+            if(mFinish){
+                return;
+            }
             refresh();
         }
     };
@@ -239,10 +246,13 @@ public class StorageSettings extends SettingsPreferenceFragment implements Index
                     PrivateVolumeSettings.class.getName(), args, null, R.string.apps_storage, null,
                     false);
             intent.putExtra(SettingsDrawerActivity.EXTRA_SHOW_MENU, true);
+            mFinish=true;
             getActivity().startActivity(intent);
             finish();
         }
     }
+
+
 
     @Override
     public void onResume() {

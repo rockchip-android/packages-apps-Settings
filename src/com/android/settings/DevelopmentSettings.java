@@ -125,6 +125,7 @@ public class DevelopmentSettings extends RestrictedSettingsFragment
     private static final String LOCAL_BACKUP_PASSWORD = "local_backup_password";
     private static final String HARDWARE_UI_PROPERTY = "persist.sys.ui.hw";
     private static final String MSAA_PROPERTY = "debug.egl.force_msaa";
+    private static final String ABC_ON = "abc_on";
     private static final String BUGREPORT = "bugreport";
     private static final String BUGREPORT_IN_POWER_KEY = "bugreport_in_power";
     private static final String OPENGL_TRACES_PROPERTY = "debug.egl.trace";
@@ -243,6 +244,7 @@ public class DevelopmentSettings extends RestrictedSettingsFragment
     private SwitchPreference mEnableAdb;
     private Preference mClearAdbKeys;
     private SwitchPreference mEnableTerminal;
+    private RestrictedSwitchPreference mAbcOn;
     private Preference mBugreport;
     private SwitchPreference mBugreportInPower;
     private RestrictedSwitchPreference mKeepScreenOn;
@@ -382,6 +384,7 @@ public class DevelopmentSettings extends RestrictedSettingsFragment
         mBugreport = findPreference(BUGREPORT);
         mBugreportInPower = findAndInitSwitchPref(BUGREPORT_IN_POWER_KEY);
         mKeepScreenOn = (RestrictedSwitchPreference) findAndInitSwitchPref(KEEP_SCREEN_ON);
+        mAbcOn = (RestrictedSwitchPreference) findAndInitSwitchPref(ABC_ON);
         mBtHciSnoopLog = findAndInitSwitchPref(BT_HCI_SNOOP_LOG);
         mEnableOemUnlock = (RestrictedSwitchPreference) findAndInitSwitchPref(ENABLE_OEM_UNLOCK);
         if (!showEnableOemUnlockPreference()) {
@@ -679,6 +682,7 @@ public class DevelopmentSettings extends RestrictedSettingsFragment
                 Settings.Global.BUGREPORT_IN_POWER_MENU, 0) != 0);
         updateSwitchPreference(mKeepScreenOn, Settings.Global.getInt(cr,
                 Settings.Global.STAY_ON_WHILE_PLUGGED_IN, 0) != 0);
+        updateSwitchPreference(mAbcOn,(SystemProperties.getInt("persist.sys.abc_switch",0)) != 0);
         updateSwitchPreference(mBtHciSnoopLog, Settings.Secure.getInt(cr,
                 Settings.Secure.BLUETOOTH_HCI_LOG, 0) != 0);
         updateSwitchPreference(mDebugViewAttributes, Settings.Global.getInt(cr,
@@ -1959,6 +1963,16 @@ public class DevelopmentSettings extends RestrictedSettingsFragment
                     Settings.Global.STAY_ON_WHILE_PLUGGED_IN,
                     mKeepScreenOn.isChecked() ?
                             (BatteryManager.BATTERY_PLUGGED_AC | BatteryManager.BATTERY_PLUGGED_USB) : 0);
+        }else if (preference == mAbcOn) {
+            if(SystemProperties.getInt("persist.sys.abc_switch",0) == 1){
+                Log.d(TAG, "set persist.sys.abc_switch 0");
+                mAbcOn.setChecked(false);
+                SystemProperties.set("persist.sys.abc_switch","0");
+            }else{
+                Log.d(TAG, "set persist.sys.abc_switch 1");
+                mAbcOn.setEnabled(true);
+                SystemProperties.set("persist.sys.abc_switch","1");
+            }
         } else if (preference == mBtHciSnoopLog) {
             writeBtHciSnoopLogOptions();
         } else if (preference == mEnableOemUnlock && mEnableOemUnlock.isEnabled()) {

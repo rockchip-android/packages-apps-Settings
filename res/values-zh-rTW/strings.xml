@@ -3263,4 +3263,6 @@
     <string name="automatic_storage_manager_activation_warning" msgid="6353100011690933254">"你的儲存空間目前是由儲存空間管理員管理"</string>
     <string name="carrier_provisioning" msgid="4398683675591893169">"行動通訊業者佈建資訊"</string>
     <string name="trigger_carrier_provisioning" msgid="3434865918009286187">"觸發行動通訊業者佈建程序"</string>
+    <string name="confirm_dialog_title">保存確認</string>
+    <string name="confirm_dialog_message">將會取消</string>
 </resources>

@@ -2912,6 +2912,7 @@
      <string name="category_ethernet">Static IP Setttings</string>
      <string name="usedhcp">dhcp</string>
      <string name="usestatic">static</string>
+     <string name="usepppoe">pppoe</string>
      <string name="ethernet_use_static_ip">Use static IP</string>
      <string name="ethernet_ip_address">IP address</string>
      <string name="staticip_save">Save</string>
@@ -2929,9 +2930,15 @@
      <!--Used as title on second screen after selecting Ethernet settings -->
      <string name="ethernet_quick_toggle_summary_on">Ethernet is enabled</string>
      <!--Used as title on second screen after selecting Ethernet settings -->
-     <string name="ethernet_mode_title">Ethernet Ip mode</string>
-     <string name="ethernet_info_getting">"getting IP info..."</string>    
+     <string name="ethernet_mode_title">Ethernet Ip mode</string> 
 
+    <!-- Pppoe Settings -->
+    <string name="pppoe_settings">PPPoE</string>
+    <string name="pppoe_username">username</string>    
+    <string name="pppoe_password">password</string>
+    <string name="pppoe_connect">CONNECT</string>
+    <string name="pppoe_cancel">CANCEL</string>
+    
     <!-- Master Clear -->
     <!-- SD card & phone storage settings screen, setting option name under Internal phone storage heading [CHAR LIMIT=30] -->
     <string name="device_reset_title">Reset device</string>
@@ -7934,10 +7941,36 @@
     <string name="screen_never_timeout_summary">Never sleep</string>
     <!-- Warning when activating the automatic storage manager on legacy devices. [CHAR LIMIT=NONE] -->
     <string name="automatic_storage_manager_activation_warning">Your storage is now being managed by the storage manager</string>
+    <string name="abc_on" >"Android bug collector"</string>
+    <string name="abc_on_summary" >"Log will be saved in /data/logs/syslog"</string>
 
     <!-- Carrier Provisioning Info [CHAR LIMIT=NONE] -->
     <string name="carrier_provisioning">Carrier Provisioning Info</string>
     <!-- Trigger Carrier Provisioning [CHAR LIMIT=NONE] -->
     <string name="trigger_carrier_provisioning">Trigger Carrier Provisioning</string>
-
+    <!-- $_rbox_$_modify_$_zhengyang: added for screen settings -->
+    <!-- Screen settings -->
+    <!-- Screen settings screen, section header for settings related to display output screen-->
+    <string name="hdmi">HDMI</string><string name="hdmi_screen_zoom">Screen Zoom</string>                                      
+    <string name="hdmi_title">Turn on HDMI</string>
+    <string name="hdmi_resolution_title">HDMI Resolution</string>
+    <string name="hdmi_lcd_timeout">Screen Timeout</string>
+    <string name="hdmi_settings">HDMI</string>
+    <string name="hdmi_connect">HDMI is connected.</string>
+    <string name="hdmi_disconnect">HDMI is disconnected.</string>
+    <string name="screen_settings">Screen</string>
+    <string name="screen_interface">Output Interface</string>
+    <string name="screen_iface_lcd_title">LCD</string>
+    <string name="screen_iface_hdmi_title">HDMI</string>
+    <string name="screen_iface_vga_title">VGA</string>
+    <string name="screen_iface_ypbpr_title">YPbPr</string>
+    <string name="screen_iface_tv_title">TV</string>
+    <string name="screen_mode_title"> Mode</string>
+    <string name="screen_mode_switch_title">Do you want to keep these display setting?</string>
+    <string name="screen_control_ok_title">Keep</string>                                                                       
+    <string name="screen_control_cancel_title">Restore</string>
+    <string name="screenscale">Screen Scale</string>
+    <!-- $_rbox_$_modify_$_zhengyang: end for screen settings -->
+    <string name="confirm_dialog_title">Save Confirm</string>
+    <string name="confirm_dialog_message">Will cancel in</string>
 </resources>

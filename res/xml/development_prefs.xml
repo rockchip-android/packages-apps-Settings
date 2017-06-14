@@ -103,6 +103,12 @@
     <PreferenceCategory android:key="debug_debugging_category"
             android:title="@string/debug_debugging_category">
 
+    <com.android.settingslib.RestrictedSwitchPreference
+        android:key="abc_on"
+        android:title="@string/abc_on"
+        android:summary="@string/abc_on_summary"
+        settings:useAdditionalSummary="true" />
+
         <SwitchPreference
             android:key="enable_adb"
             android:title="@string/enable_adb"

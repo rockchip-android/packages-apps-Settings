@@ -6,4 +6,6 @@ public interface getStaticIpInfo {
 	public boolean getStaticGateway(String gateway);
 	public boolean getStaticDns1(String dns1);
 	public boolean getStaticDns2(String dns2);
+    public boolean getPppoeUsername(String username);
+    public boolean getPppoePassword(String password);
 }

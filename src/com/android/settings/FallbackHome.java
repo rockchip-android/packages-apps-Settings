@@ -40,7 +40,7 @@ import java.util.Objects;
 
 public class FallbackHome extends Activity {
     private static final String TAG = "FallbackHome";
-    private static final int PROGRESS_TIMEOUT = 2000;
+    private static final int PROGRESS_TIMEOUT = 1000;
 
     private boolean mProvisioned;
 
@@ -112,7 +112,7 @@ public class FallbackHome extends Activity {
             final ResolveInfo homeInfo = getPackageManager().resolveActivity(homeIntent, 0);
             if (Objects.equals(getPackageName(), homeInfo.activityInfo.packageName)) {
                 Log.d(TAG, "User unlocked but no home; let's hope someone enables one soon?");
-                mHandler.sendEmptyMessageDelayed(0, 500);
+                mHandler.sendEmptyMessageDelayed(0, 200);
             } else {
                 Log.d(TAG, "User unlocked and real home found; let's go!");
                 getSystemService(PowerManager.class).userActivity(

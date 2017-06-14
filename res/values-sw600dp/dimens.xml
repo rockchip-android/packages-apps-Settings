@@ -46,7 +46,7 @@
     <dimen name="crypt_keeper_pattern_top_margin">256dip</dimen>
 
     <!-- CryptKeeper separation between status and pattern -->
-    <dimen name="crypt_keeper_pattern_separator">100dip</dimen>
+    <dimen name="crypt_keeper_pattern_separator">30dip</dimen>
 
     <!-- CryptKeeper password/pin width -->
     <dimen name="crypt_keeper_password_width">512dip</dimen>

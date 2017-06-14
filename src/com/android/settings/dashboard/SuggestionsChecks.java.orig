@@ -57,7 +57,7 @@ public class SuggestionsChecks {
         if (className.equals(ZenModeAutomationSuggestionActivity.class.getName())) {
             return hasEnabledZenAutoRules();
         } else if (className.equals(WallpaperSuggestionActivity.class.getName())) {
-            return false;//hasWallpaperSet();
+            return hasWallpaperSet();
         } else if (className.equals(WifiCallingSuggestionActivity.class.getName())) {
             return isWifiCallingUnavailableOrEnabled();
         } else if (className.equals(FingerprintSuggestionActivity.class.getName())) {
@@ -110,10 +110,6 @@ public class SuggestionsChecks {
     private boolean hasWallpaperSet() {
         IBinder b = ServiceManager.getService(Context.WALLPAPER_SERVICE);
         IWallpaperManager service = Stub.asInterface(b);
-        if(service == null){
-            //Log.e(TAG, "WALLPAPER_SERVICES is null.");
-            return false;
-        }
         try {
             return !service.isSetWallpaperAllowed(mContext.getOpPackageName()) ||
                     service.getWallpaper(mCallback, WallpaperManager.FLAG_SYSTEM,

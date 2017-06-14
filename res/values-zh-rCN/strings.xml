@@ -3261,6 +3261,31 @@
     <string name="screenshot_version">截屏管理器版本</string>
     <string name="screenshot_storage_title">设置截屏图片存储位置</string>
     <string name="later">秒以后截屏</string>
+      <!-- $_rbox_$_modify_$_zhengyang: added for screen settings -->
+    <!-- Screen settings -->
+    <!-- Screen settings screen, section header for settings related to display output screen-->
+   <string name="hdmi_connect">HDMI已连接.</string>
+   <string name="hdmi_disconnect">HDMI已断开连接.</string>
+   <string name="hdmi_settings">"HDMI配置"</string>
+   <string name="hdmi_lcd_timeout">屏幕休眠</string>
+   <string name="hdmi_title">"打开HDMI"</string>
+   <string name="hdmi_resolution_title">"分辨率设置</string>
+   <string name="hdmi_screen_zoom">"屏幕缩放"</string>
+   
+   
+    <string name="screen_settings">屏幕设置</string>
+    <string name="screen_interface">显示输出接口</string>
+    <string name="screen_iface_lcd_title">LCD</string>
+    <string name="screen_iface_hdmi_title">HDMI</string>
+    <string name="screen_iface_vga_title">VGA</string>
+    <string name="screen_iface_ypbpr_title">YPbPr</string>
+    <string name="screen_iface_tv_title">TV</string>
+    <string name="screen_mode_title">输出模式</string>
+    <string name="screen_mode_switch_title">您要保存此屏幕显示设置吗?</string>
+    <string name="screen_control_ok_title">保存</string>
+    <string name="screen_control_cancel_title">还原</string>
+    <string name="screenscale">屏幕缩放</string>
+    <!-- $_rbox_$_modify_$_zhengyang: end for screen settings -->
 
     <string name="screen_never_timeout_summary" msgid="327761329263064328">"永不休眠"</string>
     <string name="web_action_enable_title" msgid="8502552575492048305">"在应用中打开链接"</string>
@@ -3268,6 +3293,10 @@
     <string name="web_action_section_title" msgid="806405168097593614">"未安装的应用"</string>
     <string name="domain_url_section_title" msgid="7046835219056428883">"已安装的应用"</string>
     <string name="automatic_storage_manager_activation_warning" msgid="6353100011690933254">"您的存储空间目前是由存储空间管理器管理"</string>
+    <string name="abc_on" >"系统日志收集器"</string>
+    <string name="abc_on_summary" >"收集的日志保存在/data/logs/syslog目录下"</string>
     <string name="carrier_provisioning" msgid="4398683675591893169">"运营商配置信息"</string>
     <string name="trigger_carrier_provisioning" msgid="3434865918009286187">"触发运营商配置"</string>
+    <string name="confirm_dialog_title">保存确认</string>
+    <string name="confirm_dialog_message">将会取消</string>
 </resources>

@@ -313,6 +313,7 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
                         best = i;
                     }
                 }
+              if(best < entries.length){
                 if (currentTimeout > 1800000) {
                     summary = preference.getContext().getString(R.string.screen_never_timeout_summary,
                             entries[best]);
@@ -320,6 +321,9 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
                     summary = preference.getContext().getString(R.string.screen_timeout_summary,
                             entries[best]);
                 }
+              }else{
+               summary = "never sleep";
+              }
             }
         }
         preference.setSummary(summary);
